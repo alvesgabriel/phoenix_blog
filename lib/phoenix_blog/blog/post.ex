@@ -5,6 +5,7 @@ defmodule PhoenixBlog.Blog.Post do
   schema "posts" do
     field :body, :string
     field :title, :string
+    has_many :comments, PhoenixBlog.Blog.Comment
 
     timestamps()
   end
