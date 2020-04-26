@@ -1,5 +1,7 @@
 # PhoenixBlog
 
+[![Build Status](https://travis-ci.com/alvesgabriel/phoenix_blog.svg?branch=master)](https://travis-ci.com/alvesgabriel/phoenix_blog)
+
 To start your Phoenix server:
 
   * Setup the project with `mix setup`
