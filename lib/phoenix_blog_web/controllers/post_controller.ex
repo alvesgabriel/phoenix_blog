@@ -1,8 +1,9 @@
 defmodule PhoenixBlogWeb.PostController do
   use PhoenixBlogWeb, :controller
 
+  alias PhoenixBlog.Repo
   alias PhoenixBlog.Blog
-  alias PhoenixBlog.Blog.Post
+  alias PhoenixBlog.Blog.{Post, Comment}
 
   def index(conn, _params) do
     posts = Blog.list_posts()
@@ -28,7 +29,9 @@ defmodule PhoenixBlogWeb.PostController do
 
   def show(conn, %{"id" => id}) do
     post = Blog.get_post!(id)
-    render(conn, "show.html", post: post)
+    post = Repo.preload(post, :comments)
+    comment_changeset = Comment.changeset(%Comment{}, %{})
+    render(conn, "show.html", post: post, comment_changeset: comment_changeset)
   end
 
   def edit(conn, %{"id" => id}) do
